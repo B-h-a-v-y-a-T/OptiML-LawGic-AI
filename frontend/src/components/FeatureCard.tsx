@@ -1,0 +1,32 @@
+import { LucideIcon } from "lucide-react";
+import { Card } from "@/components/ui/card";
+
+interface FeatureCardProps {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  badge?: string;
+}
+
+const FeatureCard = ({ icon: Icon, title, description, badge }: FeatureCardProps) => {
+  return (
+    <Card className="gradient-card p-6 hover-lift border-border/50 relative overflow-hidden group">
+      <div className="absolute inset-0 bg-gradient-hero opacity-0 group-hover:opacity-5 transition-smooth" />
+      
+      {badge && (
+        <span className="absolute top-4 right-4 text-xs font-medium px-2 py-1 rounded-full bg-accent/10 text-accent">
+          {badge}
+        </span>
+      )}
+      
+      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-smooth">
+        <Icon className="w-6 h-6 text-primary" />
+      </div>
+      
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+    </Card>
+  );
+};
+
+export default FeatureCard;

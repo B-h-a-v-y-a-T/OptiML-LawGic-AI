@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run backend locally (no DB)",
+			"type": "shell",
+			"command": "C:/Users/bhavy/OneDrive/Desktop/Hackathons/.venv/Scripts/python.exe -c \"import uvicorn, sys; sys.path.insert(0, r'c:\\\\Users\\\\bhavy\\\\OneDrive\\\\Desktop\\\\Hackathons\\\\HackQuest_ZIP_1\\\\OptiML-CodeQuest-main\\\\app'); uvicorn.run('main:app', host='127.0.0.1', port=8000, reload=False)\"",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}
