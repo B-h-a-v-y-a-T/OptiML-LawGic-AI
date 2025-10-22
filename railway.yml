@@ -1,5 +1,7 @@
 services:
-  # Backend API Service
+  # -----------------------------
+  # Backend API Service (Python)
+  # -----------------------------
   - type: web
     name: lawgic-ai-backend
     env: python
@@ -11,16 +13,12 @@ services:
     startCommand: |
       cd backend
       uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.0
-      - key: ENVIRONMENT
-        value: production
-      - key: CORS_ORIGINS
-        value: https://lawgic-ai-frontend.onrender.com
+    envVars: []  # All secrets (GEMINI_API_KEY, etc.) set in Railway Dashboard
     healthCheckPath: /health
 
-  # Frontend Static Site
+  # -----------------------------
+  # Frontend Static Site (Node)
+  # -----------------------------
   - type: web
     name: lawgic-ai-frontend
     env: node
@@ -30,12 +28,9 @@ services:
       npm ci
       npm run build
     startCommand: |
-      serve -s dist -l $PORT
-    envVars:
-      - key: NODE_VERSION
-        value: 18
-      - key: VITE_API_BASE_URL
-        value: https://lawgic-ai-backend.onrender.com
+      cd frontend
+      npx serve -s dist -l $PORT
+    envVars: []  # No secrets here
     routes:
       - type: rewrite
         source: /*
